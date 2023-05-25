@@ -1,132 +1,123 @@
 #include "shell.h"
-#include<stdlib.h>
 
 /**
- * list_len - This will always determine length of linked list
- * presnet in the codes.
- * @hhder: This is the pointer to first node of the program or
- * codes written
+ * list_len - determines length of linked list
+ * @h: pointer to first node
+ *
  * Return: size of list
  */
-size_t list_len(const list_t *hhder)
+size_t list_len(const list_t *h)
 {
-	size_t pp = 0;
+	size_t i = 0;
 
-	do {
-		hhder = hhder->next;
-		pp++;
-	} while (hhder);
-
-	return (pp);
+	while (h)
+	{
+		h = h->next;
+		i++;
+	}
+	return (i);
 }
 
 /**
- * list_to_strings - This will return an array of strings
- * of the list->str linked to the codes.
- * @header: This is a pointer to first node passed.
- * Return: This will always return an array of strings present
- * in the codes.
+ * list_to_strings - returns an array of strings of the list->str
+ * @head: pointer to first node
+ *
+ * Return: array of strings
  */
-char **list_to_strings(list_t *header)
+char **list_to_strings(list_t *head)
 {
-	list_t *node = header;
-	size_t pp = list_len(header);
-	size_t jik;
-	char **riek;
-	char *stri;
+	list_t *node = head;
+	size_t i = list_len(head), j;
+	char **strs;
+	char *str;
 
-	if (!header || !pp)
+	if (!head || !i)
 		return (NULL);
-	riek = malloc(sizeof(char *) * (pp + 1));
-	if (!riek)
+	strs = malloc(sizeof(char *) * (i + 1));
+	if (!strs)
 		return (NULL);
-	for (pp = 0; node; node = node->next, pp++)
+	for (i = 0; node; node = node->next, i++)
 	{
-		stri = malloc(_strlen(node->str) + 1);
-		if (!stri)
+		str = malloc(_strlen(node->str) + 1);
+		if (!str)
 		{
-			for (jik = 0; jik < pp; jik++)
-				free(riek[jik]);
-			free(riek);
+			for (j = 0; j < i; j++)
+				free(strs[j]);
+			free(strs);
 			return (NULL);
 		}
 
-		stri = _strcpy(stri, node->str);
-		riek[pp] = stri;
+		str = _strcpy(str, node->str);
+		strs[i] = str;
 	}
-	riek[pp] = NULL;
-	return (riek);
+	strs[i] = NULL;
+	return (strs);
 }
 
 
 /**
- * print_list - This will print all the elements of a
- * list_t linked list in the files given or passed.
- * @hhder: This is a pointer to first node given or passed.
- * Return: This is the size of list in the strings and the one
- * given in codes.
+ * print_list - prints all elements of a list_t linked list
+ * @h: pointer to first node
+ *
+ * Return: size of list
  */
-size_t print_list(const list_t *hhder)
+size_t print_list(const list_t *h)
 {
-	size_t pp = 0;
+	size_t i = 0;
 
-	do {
-		_puts(convert_number(hhder->num, 10, 0));
+	while (h)
+	{
+		_puts(convert_number(h->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		_puts(hhder->str ? hhder->str : "(nil)");
+		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
-		hhder = hhder->next;
-		pp++;
-	} while (hhder);
-	return (pp);
+		h = h->next;
+		i++;
+	}
+	return (i);
 }
 
 /**
- * node_starts_with - This will return a node whose string starts
- * with prefix in the given codes.
- * @node: This is a pointer to list head passed in the codes.
- * @p_fix: This is the string to match in the codes given.
- * @cha: This is the next character after prefix to match
- * with the previous one or codes.
- * Return: This will returns match node or null or nothing
- * nothing is found.
+ * node_starts_with - returns node whose string starts with prefix
+ * @node: pointer to list head
+ * @prefix: string to match
+ * @c: the next character after prefix to match
+ *
+ * Return: match node or null
  */
-list_t *node_starts_with(list_t *node, char *p_fix, char cha)
+list_t *node_starts_with(list_t *node, char *prefix, char c)
 {
-	char *pre = NULL;
+	char *p = NULL;
 
-	do {
-		pre = starts_with(node->str, p_fix);
-		if (pre && ((cha == -1) || (*pre == cha)))
+	while (node)
+	{
+		p = starts_with(node->str, prefix);
+		if (p && ((c == -1) || (*p == c)))
 			return (node);
 		node = node->next;
-	} while (node);
-
+	}
 	return (NULL);
 }
 
 /**
- * get_node_index - This is to get the index of a node presents
- * in the codes passed in the codes.
- * @header: This is the pointer to list head of the node
- * and point to another one.
- * @node: This is a pointer to the node passed in the codes
- * and returns a new nodes.
- * Return: This will always returns index of the node
- * or -1 when fail to get any index of the node present in the
- * codes.
+ * get_node_index - gets the index of a node
+ * @head: pointer to list head
+ * @node: pointer to the node
+ *
+ * Return: index of node or -1
  */
-ssize_t get_node_index(list_t *header, list_t *node)
+ssize_t get_node_index(list_t *head, list_t *node)
 {
-	size_t pp = 0;
+	size_t i = 0;
 
-	do {
-		if (header == node)
-			return (pp);
-		header = header->next;
-		pp++;
-	}  while (header);
-
+	while (head)
+	{
+		if (head == node)
+			return (i);
+		head = head->next;
+		i++;
+	}
 	return (-1);
 }
+

@@ -1,9 +1,8 @@
 #include "shell.h"
-#include<stdlib.h>
 
 /**
- * clear_info - Initializer of the info_t struct.
- * @info: Informtion to be retrieved to the console.
+ * clear_info - initializes info_t struct
+ * @info: struct address
  */
 void clear_info(info_t *info)
 {
@@ -14,21 +13,20 @@ void clear_info(info_t *info)
 }
 
 /**
- * set_info - Initializer to an info_t strucT.
- * @info: Struct adress.
- * @argu: Argument to the vector passed in the program.
+ * set_info - initializes info_t struct
+ * @info: struct address
+ * @av: argument vector
  */
-void set_info(info_t *info, char **argu)
+void set_info(info_t *info, char **av)
 {
-	int pp = 0;
+	int i = 0;
 
-	info->fname = argu[0];
+	info->fname = av[0];
 	if (info->arg)
 	{
 		info->argv = strtow(info->arg, " \t");
 		if (!info->argv)
 		{
-
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
 			{
@@ -36,9 +34,9 @@ void set_info(info_t *info, char **argu)
 				info->argv[1] = NULL;
 			}
 		}
-		for (pp = 0; info->argv && info->argv[pp]; pp++)
+		for (i = 0; info->argv && info->argv[i]; i++)
 			;
-		info->argc = pp;
+		info->argc = i;
 
 		replace_alias(info);
 		replace_vars(info);
@@ -46,16 +44,16 @@ void set_info(info_t *info, char **argu)
 }
 
 /**
- * free_info - Free info_t struct fields, it free spaces.
- * @info: Struct address to be addressed.
- * @riek: Return true if freeing all fields is successfull.
+ * free_info - frees info_t struct fields
+ * @info: struct address
+ * @all: true if freeing all fields
  */
-void free_info(info_t *info, int riek)
+void free_info(info_t *info, int all)
 {
 	ffree(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
-	if (riek)
+	if (all)
 	{
 		if (!info->cmd_buf)
 			free(info->arg);
@@ -73,3 +71,4 @@ void free_info(info_t *info, int riek)
 		_putchar(BUF_FLUSH);
 	}
 }
+
