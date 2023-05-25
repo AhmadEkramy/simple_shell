@@ -1,12 +1,13 @@
 #include "shell.h"
 
 /**
- * add_node - adds a node to the start of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
+ * add_node - A node must be added at the beginning of the list
  *
- * Return: size of list
+ * @head: you should assign the pointer to the head node
+ * @str: indicates to the sequence of characters assigned,
+ * to field of node refered as str
+ * @num: the number indicates to history's node index node
+ * Return: return when find the size of the list
  */
 list_t *add_node(list_t **head, const char *str, int num)
 {
@@ -34,12 +35,14 @@ list_t *add_node(list_t **head, const char *str, int num)
 }
 
 /**
- * add_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
+ * add_node_end - a node must be added to the end of the list
  *
- * Return: size of list
+ * @head: you should assign the pointer to the head node
+ * @str: indicates to the sequence of characters assigned,
+ * to field of node refered as str
+ * @num: the number indicates to history's node index node
+ *
+ * Return: return when find the size of the list
  */
 list_t *add_node_end(list_t **head, const char *str, int num)
 {
@@ -75,10 +78,11 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 }
 
 /**
- * print_list_str - prints only the str element of a list_t linked list
- * @h: pointer to first node
+ * print_list_str - a list_t linked list is printed only with its str element
  *
- * Return: size of list
+ * @h: you should assign the pointer to the first node
+ *
+ * Return: return with the size of the list
  */
 size_t print_list_str(const list_t *h)
 {
@@ -95,11 +99,12 @@ size_t print_list_str(const list_t *h)
 }
 
 /**
- * delete_node_at_index - deletes node at given index
- * @head: address of pointer to first node
- * @index: index of node to delete
+ * delete_node_at_index - A node at a particular index is eliminated
  *
- * Return: 1 on success, 0 on failure
+ * @head: you should assign the pointer to the head node
+ * @index: the location of the selected node you wish to eliminate
+ *
+ * Return: return with 1 when yo succeed, and with 0 when failure
  */
 int delete_node_at_index(list_t **head, unsigned int index)
 {
@@ -135,10 +140,11 @@ int delete_node_at_index(list_t **head, unsigned int index)
 }
 
 /**
- * free_list - frees all nodes of a list
- * @head_ptr: address of pointer to head node
+ * free_list - all the nodes of the list must be freed
  *
- * Return: void
+ * @head_ptr: you should assign the pointer to the head of the  node
+ *
+ * Return: no value void
  */
 void free_list(list_t **head_ptr)
 {
@@ -157,4 +163,3 @@ void free_list(list_t **head_ptr)
 	}
 	*head_ptr = NULL;
 }
-

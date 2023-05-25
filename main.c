@@ -1,11 +1,12 @@
 #include "shell.h"
 
 /**
- * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * main - main is the entry point
+ * @ac: all arguments must be counted arg
  *
- * Return: 0 on success, 1 on error
+ * @av: you need to measure your argument as an angel use arg vector
+ *
+ * Return: retern with 0 when success, and return with 1 if you failed
  */
 int main(int ac, char **av)
 {
@@ -42,4 +43,3 @@ int main(int ac, char **av)
 	hsh(info, av);
 	return (EXIT_SUCCESS);
 }
-

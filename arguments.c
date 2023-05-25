@@ -1,11 +1,12 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * _myenv - the current environment is printed
+ * @info: Arrangement with potential arguments.
+ * used to keep the prototype constant function
  * Return: Always 0
- */
+*/
+
 int _myenv(info_t *info)
 {
 	print_list_str(info->env);
@@ -13,12 +14,12 @@ int _myenv(info_t *info)
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
+ * _getenv - obtains a variable's value in the environment
+ * @info: Arrangement with potential arguments. used to keep up
  * @name: env var name
- *
  * Return: the value
- */
+*/
+
 char *_getenv(info_t *info, const char *name)
 {
 	list_t *node = info->env;
@@ -35,12 +36,13 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _mysetenv - Set up a new environment,
+ * variable or alter one that already exists.
+ * @info: Arrangement with potential arguments.
+ * used to keep the prototype constant function
  *  Return: Always 0
- */
+*/
+
 int _mysetenv(info_t *info)
 {
 	if (info->argc != 3)
@@ -54,11 +56,12 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _myunsetenv - Eliminate a setting variable
+ * @info: Arrangement with potential arguments.
+ * used to keep the prototype constant function
  * Return: Always 0
- */
+*/
+
 int _myunsetenv(info_t *info)
 {
 	int i;
@@ -75,11 +78,12 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * populate_env_list - fills in the env linked list
+ * @info: Arrangement with potential arguments.
+ * used to keep the prototype constant function
  * Return: Always 0
- */
+*/
+
 int populate_env_list(info_t *info)
 {
 	list_t *node = NULL;

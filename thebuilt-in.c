@@ -1,19 +1,19 @@
 #include "shell.h"
 
 /**
- * input_buf - buffers chained commands
- * @info: parameter struct
- * @buf: address of buffer
- * @len: address of len var
+ * input_buf - chained commands with buffers
+ * @info: struct parameter
+ * @buf: buffer address
+ * @len: len var address
  *
  * Return: bytes read
- */
+*/
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 	ssize_t r = 0;
 	size_t len_p = 0;
 
-	if (!*len) /* if nothing left in the buffer, fill it */
+	if (!*len) /*Fill the buffer if there is nothing left in it */
 	{
 		/*bfree((void **)info->cmd_buf);*/
 		free(*buf);
@@ -28,7 +28,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		{
 			if ((*buf)[r - 1] == '\n')
 			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
+				(*buf)[r - 1] = '\0'; /* trailing newline remove */
 				r--;
 			}
 			info->linecount_flag = 1;
@@ -45,11 +45,10 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 }
 
 /**
- * get_input - gets a line minus the newline
- * @info: parameter struct
- *
+ * get_input - removes the newline from a queue
+ * @info: struct parameter
  * Return: bytes read
- */
+*/
 ssize_t get_input(info_t *info)
 {
 	static char *buf; /* the ';' command chain buffer */
@@ -61,9 +60,9 @@ ssize_t get_input(info_t *info)
 	r = input_buf(info, &buf, &len);
 	if (r == -1) /* EOF */
 		return (-1);
-	if (len) /* we have commands left in the chain buffer */
+	if (len) /* The chain buffer still contains commands */
 	{
-		j = i; /* init new iterator to current buf position */
+		j = i; /* init updated buf position with new iterator */
 		p = buf + i; /* get pointer for return */
 
 		check_chain(info, buf, &j, i, len);
@@ -85,18 +84,17 @@ ssize_t get_input(info_t *info)
 		return (_strlen(p)); /* return length of current command */
 	}
 
-	*buf_p = buf; /* else not a chain, pass back buffer from _getline() */
-	return (r); /* return length of buffer from _getline() */
+	*buf_p = buf; /* if not, pass back the buffer from the chain _getline() */
+	return (r); /* return size of the buffer from _getline() */
 }
 
 /**
- * read_buf - reads a buffer
- * @info: parameter struct
+ * read_buf - buffer reads
+ * @info: struct parameter
  * @buf: buffer
  * @i: size
- *
  * Return: r
- */
+*/
 ssize_t read_buf(info_t *info, char *buf, size_t *i)
 {
 	ssize_t r = 0;
@@ -110,13 +108,12 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 }
 
 /**
- * _getline - gets the next line of input from STDIN
- * @info: parameter struct
- * @ptr: address of pointer to buffer, preallocated or NULL
- * @length: size of preallocated ptr buffer if not NULL
- *
+ * _getline - obtains the following line of input from STDIN
+ * @info: struct parameter
+ * @ptr: address of the buffer's pointer, preallocated space, or NULL
+ * @length: if not NULL, the size of the preallocated ptr buffer.
  * Return: s
- */
+*/
 int _getline(info_t *info, char **ptr, size_t *length)
 {
 	static char buf[READ_BUF_SIZE];
@@ -158,14 +155,12 @@ int _getline(info_t *info, char **ptr, size_t *length)
 
 /**
  * sigintHandler - blocks ctrl-C
- * @sig_num: the signal number
- *
+ * @sig_num:  number signal
  * Return: void
- */
+*/
 void sigintHandler(__attribute__((unused))int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");
 	_putchar(BUF_FLUSH);
 }
-

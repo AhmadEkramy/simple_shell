@@ -1,11 +1,10 @@
 #include "shell.h"
 
 /**
- * get_history_file - gets the history file
- * @info: parameter struct
- *
- * Return: allocated string containg history file
- */
+ * get_history_file - the history file gets
+ * @info: struct parameter
+ * Return: history file in the allocated string
+*/
 
 char *get_history_file(info_t *info)
 {
@@ -54,11 +53,10 @@ int write_history(info_t *info)
 }
 
 /**
- * read_history - reads history from file
- * @info: the parameter struct
- *
+ * read_history - s file history to be read
+ * @info: struct parameter
  * Return: histcount on success, 0 otherwise
- */
+*/
 int read_history(info_t *info)
 {
 	int i, last = 0, linecount = 0;
@@ -104,12 +102,11 @@ int read_history(info_t *info)
 
 /**
  * build_history_list - adds entry to a history linked list
- * @info: Structure containing potential arguments. Used to maintain
+ * @info: Structure contain plausible counterarguments. used to keep up
  * @buf: buffer
- * @linecount: the history linecount, histcount
- *
+ * @linecount: the linecount of history, histcount
  * Return: Always 0
- */
+*/
 int build_history_list(info_t *info, char *buf, int linecount)
 {
 	list_t *node = NULL;
@@ -124,11 +121,10 @@ int build_history_list(info_t *info, char *buf, int linecount)
 }
 
 /**
- * renumber_history - renumbers the history linked list after changes
- * @info: Structure containing potential arguments. Used to maintain
- *
- * Return: the new histcount
- */
+ * renumber_history - after revisions, the history linked list is renumbered.
+ * @info: Structure contain plausible counterarguments. used to keep up
+ * Return: histcount new
+*/
 int renumber_history(info_t *info)
 {
 	list_t *node = info->history;
@@ -141,4 +137,3 @@ int renumber_history(info_t *info)
 	}
 	return (info->histcount = i);
 }
-
