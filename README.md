@@ -1,2 +1,1 @@
-This Is A Team Project Done By Ahmed Ekramy
-C - Simple Shell
+This Is A C - Simple Shell Team Project Done By Ahmed Ekramy

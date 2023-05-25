@@ -1,0 +1,10 @@
+.TH man 1 "10 May 2023"  "SIMPLE_SHELL"
+.SH NAME
+.B simple_shell
+- a simple UNIX command interpreter
+.SH SYNOPSIS
+.B #include \(shell.h\(dq)
+.SH AUTHOR
+Gatjuat Wicteat Riek and Wahiba
+.SH SEE ALSO
+.BR sh (1)
